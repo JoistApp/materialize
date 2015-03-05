@@ -617,7 +617,7 @@ jQuery.extend( jQuery.easing,
 })(jQuery);
 ;(function ($) {
 
-  $.fn.materialbox = function () {
+  $.fn.materialbox = function (options) {
 
     return this.each(function() {
 
@@ -627,6 +627,8 @@ jQuery.extend( jQuery.easing,
 
       $(this).addClass('intialized');
 
+      var complete = options.complete;
+      var begin = options.begin;
       var overlayActive = false;
       var doneAnimating = true;
       var inDuration = 275;
@@ -725,6 +727,7 @@ jQuery.extend( jQuery.easing,
               origin.css({left: 0, top: 0})
               .velocity(
                 {
+                  opacity: 1,
                   height: newHeight,
                   width: newWidth,
                   left: $(document).scrollLeft() + windowWidth/2 - origin.parent('.material-placeholder').offset().left - newWidth/2,
@@ -745,6 +748,7 @@ jQuery.extend( jQuery.easing,
           .css('top', 0)
           .velocity(
             {
+              opacity: 1,
               height: newHeight,
               width: newWidth,
               left: $(document).scrollLeft() + windowWidth/2 - origin.parent('.material-placeholder').offset().left - newWidth/2,
@@ -801,14 +805,18 @@ jQuery.extend( jQuery.easing,
           // Resize Image
           origin.velocity(
             {
+              opacity: 0,
               width: originalWidth,
               height: originalHeight,
               left: 0,
               top: 0
             },
             {
+              begin: begin,
+              complete: complete,
               duration: outDuration,
-              queue: false, easing: 'easeOutQuad'
+              queue: false,
+              easing: 'easeOutQuad'
             }
           );
 
@@ -5689,5 +5697,3 @@ Picker.extend( 'pickadate', DatePicker )
 
 
 }));
-
-
