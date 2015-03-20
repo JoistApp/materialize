@@ -431,10 +431,17 @@ jQuery.extend( jQuery.easing,
           height: 0
         });
       }
+
+			var bodyHeight = $('body').height();
+      var actualDropdownRealHeight = dropdownRealHeight;
+
+      if (origin.offset().top + offset + actualDropdownRealHeight > bodyHeight) {
+        actualDropdownRealHeight = bodyHeight - origin.offset().top - offset
+      }
       activates.velocity({opacity: 1}, {duration: options.inDuration, queue: false, easing: 'easeOutQuad'})
       .velocity(
       {
-        height: dropdownRealHeight
+        height: actualDropdownRealHeight
       },
       {duration: options.inDuration,
         queue: false,
