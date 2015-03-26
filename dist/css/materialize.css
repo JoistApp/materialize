@@ -6200,7 +6200,7 @@ textarea.materialize-textarea {
   min-height: 3rem; }
 
 .hiddendiv {
-  display: none;
+  /*display: none;*/
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
